@@ -1,7 +1,35 @@
-# Python environment & cache
+# Python & Environment
 .venv/
+env/
+venv/
 __pycache__/
+*.py[cod]
+*$py.class
 
-# Datasets (prevent uploading large files to GitHub)
+# Project & Package Management (uv / pip)
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Datasets & Local Downloads (prevent uploading large data files)
 *.parquet
 *.csv
+*.csv.gz
+*.gz
+*.json
+output.*
+
+# Environment & Credentials
+.env
+.env.*
+*.pem
+
+# Docker & Database Local Storage
+pgdata/
+.pgdata/
+
+# IDEs & System Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
