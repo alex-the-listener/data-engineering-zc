@@ -1,0 +1,9 @@
+# Ignore local environment state & secret files globally
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+*.tfvars.json
+*.json
+.DS_Store
+.vscode/
