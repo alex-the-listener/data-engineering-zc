@@ -25,19 +25,18 @@ def main(params):
     if file_name.endswith('.parquet'):
         print(f"Reading Parquet file: {file_name}")
         parquet_file = pq.ParquetFile(file_name)
+        batches = parquet_file.iter_batches(batch_size=100000)
         
-        # Read the first batch to set up table schema
-        first_batch = next(parquet_file.iter_batches(batch_size=100000))
-        df = first_batch.to_pandas()
-        
+        # Get first batch for schema setup and initial insert
+        first_batch = next(batches).to_pandas()
         print(f"Creating schema for '{table_name}'...")
-        df.head(n=0).to_sql(name=table_name, con=engine, if_exists='replace', index=False)
-
+        first_batch.head(n=0).to_sql(name=table_name, con=engine, if_exists='replace', index=False)
+        
         print(f"Ingesting records into '{table_name}'...")
-        df.to_sql(name=table_name, con=engine, if_exists='append', index=False)
+        first_batch.to_sql(name=table_name, con=engine, if_exists='append', index=False)
 
-        # Stream remaining batches
-        for batch in parquet_file.iter_batches(batch_size=100000):
+        # Process only the remaining batches from generator
+        for batch in batches:
             df_batch = batch.to_pandas()
             df_batch.to_sql(name=table_name, con=engine, if_exists='append', index=False)
 
