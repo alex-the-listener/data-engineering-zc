@@ -1,16 +1,25 @@
--- ============================================================
--- QUESTION 4: Longest Trip Distance Under 100 Miles
--- ============================================================
-SELECT *
+# Module 1 Homework Solutions
+
+```sql
+
+/*
+QUESTION 4: Which was the pick-up day with the longest trip distance?
+Answer:`2025-11-14`
+*/
+--QUERY USED--
+SELECT 
+    lpep_pickup_datetime,
+    trip_distance
 FROM green_taxi_trips
 WHERE trip_distance < 100
 ORDER BY trip_distance DESC
 LIMIT 1;
 
 
--- ============================================================
--- QUESTION 5: Top Pickup Zone by Total Amount
--- ============================================================
+/*
+QUESTION 5: Which were the top pickup zones with the largest total_amount sum on November 18, 2025?
+*/
+--QUERY USED--
 SELECT 
     z."Zone",
     SUM(t.total_amount) AS total_amount_sum
@@ -24,9 +33,12 @@ ORDER BY total_amount_sum DESC
 LIMIT 1;
 
 
--- ============================================================
--- QUESTION 6: Dropoff Zone with Largest Tip (Pickup: East Harlem North)
--- ============================================================
+
+/*
+QUESTION 6: For passengers picked up in East Harlem North in November 2025, which drop-off zone had the largest tip?
+Answer: JFK Airport (or your top result)
+*/
+--QUERY USED--
 SELECT 
     z_dropoff."Zone" AS dropoff_zone,
     MAX(t.tip_amount) AS max_tip
