@@ -1,0 +1,7 @@
+# Python environment & cache
+.venv/
+__pycache__/
+
+# Datasets (prevent uploading large files to GitHub)
+*.parquet
+*.csv
