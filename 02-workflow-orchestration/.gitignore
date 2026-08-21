@@ -1,0 +1,26 @@
+# Environment & Secrets
+.env
+*.env
+
+# Python / Virtual Envs
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Kestra & Local Storage / Executions
+.kestra/
+/tmp/
+/storage/
+
+# Docker Local Data Mounts
+postgres_data/
+kestra_postgres_data/
+
+# OS / Editor Specific
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
